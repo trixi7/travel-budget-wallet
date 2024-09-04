@@ -1,92 +1,235 @@
-/* BudgetTracker.css */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+/* back button positioning */
+.back-button {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  background-color: #ffcd70;
+  color: #387097;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.back-button:hover {
+  background-color: #fbb636;
+}
+
+/* budget tracker container */
 .budget-tracker {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  .budget-display {
-    margin-bottom: 20px;
-  }
-  
-  .expense-list {
-    margin-bottom: 20px;
-  }
-  
-  .expense-list ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .expense-list li {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-  }
-  
-  .remaining-budget {
-    margin-top: 20px;
-    font-weight: bold;
-  }
-  
-  button {
-    margin: 10px 0;
-    padding: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    max-width: 400px;
-    width: 100%;
-  }
-  
-  .modal-content h2 {
-    margin-top: 0;
-  }
-  
-  .modal-content input,
-  .modal-content select {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-  }
-  
-  .modal-content button {
-    margin-right: 10px;
-    padding: 10px;
-  }
-  
-  .expense-list .expense-amount {
-    text-align: right;
-  }
-  
-  .remaining-budget {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .remaining-budget .conversion-rate {
-    text-align: right;
-  }
+  background-color: #387097;
+  color: #fbfcf8;
+  font-family: 'Quicksand', sans-serif;
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.budget-tracker h1 {
+  font-size: 4em;
+  margin-bottom: 20px;
+}
+
+.budget-tracker button {
+  font-family: 'Quicksand', sans-serif;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffcd70;
+  color: #387097;
+  font-size: 1em;
+  cursor: pointer;
+  margin: 10px;
+  transition: background-color 0.3s;
+}
+
+.budget-tracker button:hover {
+  background-color: #fbb636;
+}
+
+/* modal*/
+.modal {
+  font-family: 'Quicksand', sans-serif;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content h2 {
+  color: #387097;
+  margin-top: 0;
+  text-align: center;
+}
+
+.modal-content input {
+  font-family: 'Quicksand', sans-serif;
+  width: calc(100% - 20px);
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #387097;
+  border-radius: 8px;
+  display: block;
+}
+
+.modal-content button {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.9em;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+/* enter button */
+.modal-content button:first-of-type {
+  background-color: #ffcd70;
+  color: #387097;
+}
+
+.modal-content button:first-of-type:hover {
+  background-color: #fbb636;
+}
+
+/* cancel button */
+.modal-content button:last-of-type {
+  background-color: #ff7070;
+  color: #fbfcf8;
+}
+
+.modal-content button:last-of-type:hover {
+  background-color: #ff3b4f;
+}
+
+/* budget list */
+.budget-display, .remaining-budget {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.budget-display h2 {
+  font-size: 1.5em;
+  margin-bottom: 15px;
+}
+
+.remaining-budget span {
+  display: block;
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+.remaining-budget .conversion-rate {
+  color: #fbb636;
+  font-size: 0.75em;
+}
+
+/* expense list */
+.expense-list {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.expense-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.expense-list-header h3 {
+  margin: 0;
+}
+
+.expense-list-header button {
+  padding: 10px 20px;
+  font-size: 1em;
+  background-color: #ffcd70;
+  color: #387097;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.expense-list-header button:hover {
+  background-color: #fbb636;
+}
+
+.expense-list ul {
+  color: #387097;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expense-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: #f9f9f9;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.expense-list li span {
+  flex: 1;
+  font-size: 1em;
+  text-align: left;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.expense-list li .expense-amount {
+  width: 100px;
+  text-align: right;
+}
+
+.expense-list li button {
+  background: #ff7070;
+  color: #fbfcf8;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.3s;
+}
+
+.expense-list li button:hover {
+  background-color: #ff3b4f;
+}
